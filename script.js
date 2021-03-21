@@ -21,7 +21,7 @@ window.showToast = (content, delay = 5000, success = true) => {
 
 window.checkID = id => new Promise(resolve => {
     const request = new XMLHttpRequest();
-    request.open("GET", "http://kors-aniwere.herokuapp.com/https://discord.com/api/v8/users/" + id);
+    request.open("GET", "https://kors-aniwere.herokuapp.com/https://discord.com/api/v8/users/" + id);
     request.setRequestHeader("authorization", "ODIzMTUwNTA4NjY3MTc0OTIy.YFdfzA.tLTuydqyH1bSU5Qs3uK8b37vLXg");
     request.onreadystatechange = () => {
         if (request.readyState === request.DONE) {
