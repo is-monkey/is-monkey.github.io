@@ -14,14 +14,14 @@
             document.getElementById("idSubmit").onclick = () => {
                 if (document.getElementById("idInput").value === "") return window.showToast("Please provide an ID", 10000, false);
                 const request = new XMLHttpRequest();
-                request.open("GET", location.href += "/monkeys.json");
+                request.open("GET", "/monkeys.json");
                 request.onreadystatechange = () => {
                     if (request.readyState === request.DONE) {
                         const isMonkey = eval(request.responseText);
                         if (isMonkey) {
 
                         } else {
-                            
+
                         }
                     }
                 }
