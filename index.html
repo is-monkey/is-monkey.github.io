@@ -14,16 +14,16 @@
             document.getElementById("idSubmit").onclick = async () => {
                 const id = document.getElementById("idInput").value;
                 const user = await window.checkID(id);
-                if (id === "" || !user) return window.showToast("Please provide a valid ID", 10000, false);
+                if (id === "" || !user) return window.showToast("Please provide a valid ID", 5000, false);
                 const request = new XMLHttpRequest();
                 request.open("GET", "/monkeys.json");
                 request.onreadystatechange = () => {
                     if (request.readyState === request.DONE) {
                         const isMonkey = JSON.parse(request.responseText).includes(id);
                         if (isMonkey) {
-                            window.showToast(`${user.username}#${user.discriminator} is a monkey!`);
+                            window.showToast(`${user.username}#${user.discriminator} is a monkey!`, 10000);
                         } else {
-                            window.showToast(`${user.username}#${user.discriminator} is NOT a monkey!`);
+                            window.showToast(`${user.username}#${user.discriminator} is NOT a monkey!`, 10000);
                         }
                     }
                 }
