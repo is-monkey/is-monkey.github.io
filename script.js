@@ -21,12 +21,13 @@ window.showToast = (content, delay = 5000, success = true) => {
 
 window.checkID = id => new Promise(resolve => {
     const request = new XMLHttpRequest();
-    request.open("GET", "https://discord.com/api/v8/users/" + id);
-    request.setRequestHeader("authorization", "ODIzMTUwNTA4NjY3MTc0OTIy.YFdfzA.tLTuydqyH1bSU5Qs3uK8b37vLXg");
+    request.open("POST", "https://discord-id-lookup.herokuapp.com/lookup");
+    request.setRequestHeader("content-type", "application/json");
     request.onreadystatechange = () => {
         if (request.readyState === request.DONE) {
-            resolve({ username: "man.", discriminator: "1234" });
+            if (request.status !== 404) resolve(JSON.parse(request.responseText));
+            else resolve(false);
         }
     }
-    request.send();
+    request.send(JSON.stringify({id: id}));
 });
