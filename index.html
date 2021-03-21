@@ -14,7 +14,6 @@
             document.getElementById("idSubmit").onclick = async () => {
                 const id = document.getElementById("idInput").value;
                 const user = await window.checkID(id);
-                console.log(user);
                 if (id === "" || !user) return window.showToast("Please provide a valid ID", 10000, false);
                 const request = new XMLHttpRequest();
                 request.open("GET", "/monkeys.json");
@@ -22,9 +21,9 @@
                     if (request.readyState === request.DONE) {
                         const isMonkey = JSON.parse(request.responseText).includes(id);
                         if (isMonkey) {
-                            alert("yes");
+                            window.showToast(`${user.username}#${user.discriminator} is a monkey!`);
                         } else {
-                            alert("no");
+                            window.showToast(`${user.username}#${user.discriminator} is NOT a monkey!`);
                         }
                     }
                 }
