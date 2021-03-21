@@ -1,0 +1,10 @@
+.center-container {
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    transform: translateY(100%)
+}
+.toast {
+    transform: translateY(200%);
+    float: right;
+}

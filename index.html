@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Are you a monkey?</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="./image.png">
+    <script src="./script.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            document.getElementById("idSubmit").onclick = () => {
+                if (document.getElementById("idInput").value === "") return window.showToast("Please provide an ID", 10000, false);
+                const request = new XMLHttpRequest();
+                request.open("GET", location.href += "/monkeys.json");
+                request.onreadystatechange = () => {
+                    if (request.readyState === request.DONE) {
+                        const isMonkey = eval(request.responseText);
+                        if (isMonkey) {
+
+                        } else {
+                            
+                        }
+                    }
+                }
+                request.send();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="center-container">
+        <h2>Enter discord ID to find out:</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" id="idInput" placeholder="ID">
+        </div>
+        <button id="idSubmit" type="button" class="btn btn-primary btn-lg btn-block">Find out</button>
+    </div>
+</body>
+
+</html>
