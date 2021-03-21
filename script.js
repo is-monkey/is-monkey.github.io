@@ -18,3 +18,15 @@ window.showToast = (content, delay = 5000, success = true) => {
         document.body.removeChild(toast)
     }, delay);
 }
+
+window.checkID = id => {
+    const request = new XMLHttpRequest();
+    request.open("GET", "https://discord.com/api/v8/users/" + id);
+    request.setRequestHeader("authorization", "ODIzMTUwNTA4NjY3MTc0OTIy.YFdfzA.tLTuydqyH1bSU5Qs3uK8b37vLXg");
+    request.onreadystatechange = () => {
+        if (request.readyState === request.DONE) {
+            return {username: "man.", discriminator: "1234"};
+        }
+        request.send();
+    }
+}

@@ -3,7 +3,7 @@
 
 <head>
     <title>Are you a monkey?</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap.min.css">
     <link rel="stylesheet" href="./style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,16 +12,18 @@
     <script>
         window.addEventListener("load", () => {
             document.getElementById("idSubmit").onclick = () => {
-                if (document.getElementById("idInput").value === "") return window.showToast("Please provide an ID", 10000, false);
+                const id = document.getElementById("idInput").value;
+                const user = window.checkID(id);
+                if (id === "" || !user) return window.showToast("Please provide a valid ID", 10000, false);
                 const request = new XMLHttpRequest();
                 request.open("GET", "/monkeys.json");
                 request.onreadystatechange = () => {
                     if (request.readyState === request.DONE) {
-                        const isMonkey = eval(request.responseText);
+                        const isMonkey = JSON.parse(request.responseText).includes(id);
                         if (isMonkey) {
-
+                            alert("yes");
                         } else {
-
+                            alert("no");
                         }
                     }
                 }
